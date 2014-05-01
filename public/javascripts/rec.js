@@ -212,9 +212,9 @@ $('.report').on('click',function() {
             poo_avg = Math.ceil((millisNow - Date.parse(min_poo_time))/(poo_total*1000*60))
             feed_avg = Math.ceil((millisNow - Date.parse(min_feed_time))/(feed_total*1000*60))
 
-            next_pee = Math.ceil(millisNow/(1000*60) - (Math.ceil(Date.parse(max_pee_time)/(1000*60))+pee_avg))
-            next_poo = Math.ceil(millisNow/(1000*60) - (Math.ceil(Date.parse(max_poo_time)/(1000*60))+poo_avg))
-            next_feed = Math.ceil(millisNow/(1000*60) - (Math.ceil(Date.parse(max_feed_time)/(1000*60))+feed_avg))
+            next_pee = Math.ceil((Math.ceil(Date.parse(max_pee_time)/(1000*60))+pee_avg)-millisNow/(1000*60))
+            next_poo = Math.ceil((Math.ceil(Date.parse(max_poo_time)/(1000*60))+poo_avg)-millisNow/(1000*60))
+            next_feed = Math.ceil((Math.ceil(Date.parse(max_feed_time)/(1000*60))+feed_avg)-millisNow/(1000*60))
 
             var report = 
             '<div><h6>小Katie的日常</h6>'+
