@@ -1,0 +1,49 @@
+body {
+	padding: 50px 25px 25px 0px;
+	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+.panel {
+	margin-top: 5px;
+}
+.container {
+	width: 100%;
+	padding-left: 5px;
+	padding-right: 0px;	
+}
+.navbar-inverse {
+	background-color: seashell;
+	border-color: seashell;
+}
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:hover, .navbar-inverse .navbar-nav>.active>a:focus {
+color: #fff;
+background-color: darksalmon;
+}
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+border-color: seashell;
+}
+.navbar-inverse .navbar-toggle {
+border-color: darksalmon;
+}
+.navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
+background-color: darksalmon;
+}
+.navbar-inverse .navbar-toggle .icon-bar {
+background-color: darksalmon;
+}
+
+.event-detail {
+	display:none;
+	background-color: seashell;
+}
+
+.ui-dialog-osx {
+    -moz-border-radius: 0 0 8px 8px;
+    -webkit-border-radius: 0 0 8px 8px;
+    border-radius: 0 0 8px 8px;
+    border-width: 0 8px 8px 8px;
+}
+

@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title><%= title %></title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/stylesheets/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/stylesheets/jquery-ui-1.10.4.css" rel="stylesheet">
+	<link href="/stylesheets/jquery-ui-timepicker-addon.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/stylesheets/style.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/rec"><%= title %></a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/rec">Home</a></li>
+            <li><a class="report" href="#">Report</a></li>
+            <li><a href="/rec">Contact</a></li>            
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <div class="container">
+    	<div class="row-fluid">	    	
+	    	<div id="event" class="btn-group panel panel-default">
+	    		<div class="panel-heading">Event</div>
+	    		<div class="panel-body">
+	    		<button id="event-new" type="button" class="btn btn-lg btn-primary">New Event</button>
+	    		<button id="event-graph" type="button" class="btn btn-lg btn-info report">Report</button>
+	    		<button id="event-graph" type="button" class="btn btn-lg btn-info">Graph</button>
+	  			</div>
+	    	</div>
+	    	<div id="ops" class="btn-group panel panel-default event-detail">
+	    		<div class="panel-heading">Ops</div>
+	    		<div class="panel-body">
+	    		<button id="event-save" type="button" class="btn btn-lg btn-success">Save</button>
+	    		<button id="event-cancel" type="button" class="btn btn-lg btn-danger">Cancel</button>
+	  			</div>
+	    	</div>
+    		<div id="new-event-type" class="panel event-detail">
+				<div class="btn-grp">
+					<button id="new-type-bio" class="btn btn-lg btn-info" value="Bio">New Bio</button>
+					<button id="new-type-feed" class="btn btn-lg btn-info" value="Feed">New Feed</button>
+					<span id="new-type-show"></span>
+				</div>
+			</div>
+			<div id="new-feed-detail"class="panel event-detail">
+				<button id="new-feed1" class="btn btn-md btn-info feed-done">Left Side</button>
+				<button id="new-feed2" class="btn btn-md btn-info feed-done">Right Side</button>
+				<button id="new-feed3" class="btn btn-md btn-info feed-done">Both Side</button>
+				<span id="new-feed-show"></span>	
+			</div>
+			<div id="new-bio-detail"class="panel event-detail">
+				<button id="new-bio1" class="btn btn-lg btn-warning bio-done">Poo</button>
+				<button id="new-bio2" class="btn btn-lg btn-info bio-done">Pee</button>    
+				<span id="new-bio-show"></span>					
+			</div>
+    		
+    		<div id="new-comments" class="panel event-detail">
+    			<div id="range-picker">
+    				<label class="label label-primary">Time</label>
+	  				<input id="range-picker-start"  class="form-control">
+	  			</div>
+    			<div id="new-comments">
+    				<label class="label label-primary">Comments</label>
+					<input id="new-comments-content" class="form-control" placeholder="Normal">
+				</div>
+    		</div>
+	    	
+	    	
+    	</div>
+	    <div >
+	    	<div id="filter" class="btn-group panel panel-default">
+	    		<div class="panel-heading">Filters</div>
+	    		<div class="panel-body">
+	    		<button id="filter-bio" type="button" class="btn btn-md btn-default">Bio</button>
+	  			<button id="filter-feed" type="button" class="btn btn-md btn-default">Feed</button>
+	  			<button id="filter-clear" type="button" class="btn btn-md btn-default">Clear</button>
+	  				
+	  			</div>
+	    	</div>
+		    <table class="table table-bordered">
+		    <tr>
+		    	<th>Type</th>
+		    	<th>Fact</th>
+		    	<th>Time</th>
+		    	<th>Comments</th>
+		    	<th>Ops</th>
+		    </tr>
+		    <% recs.forEach(function(r) {%>
+		    	<tr>
+		    		<td><%=r.type%></td>
+		    		<td><%=r.fact%></td>
+		    		<td><%=r.event_time%></td>
+		    		<td><%=r.comments%></td>
+		    		<td>
+		    			<button id="event-edit-inline" class="event-edit-one btn btn-default">
+		    				<span class="glyphicon glyphicon-pencil"></span>
+		    			</button>
+		    			<button id="<%= r.id%>" class="event-remove-one btn btn-danger">
+		    				<span class="glyphicon glyphicon-trash"></span>
+		    			</button>
+		    		</td>
+		    	</tr>
+		    <%})%>
+		    </table>
+	    </div>		
+      
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/javascripts/jquery-1.11.0.js"></script>
+    <script src="/stylesheets/dist/js/bootstrap.min.js"></script>
+    <script src="/javascripts/jquery-ui-1.10.4.js"></script>    
+    <script src="/javascripts/jquery-ui-timepicker-addon.js"></script>       
+    <script src="/javascripts/rec.js"></script>
+    <script src="">
+  </body>
+</html>
+
+
+

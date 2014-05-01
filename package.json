@@ -1,0 +1,16 @@
+{
+  "name": "application-name",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "4.1.1",
+    "ejs": "*",
+    "sqlite3": "*",
+    "body-parser": "*",
+    "static-favicon": "*",
+    "cors": "~2.2.0"
+  }
+}
