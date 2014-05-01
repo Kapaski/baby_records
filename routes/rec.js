@@ -5,9 +5,9 @@ function closeDb(db) {
 }
 exports.getRows = function(req, res){
 	var db = new sqlite3.Database(global.dbfile);
-	db.all("select * from rec order by event_time desc",function(err,rows) {
+	db.all("select id, type, strftime('%m/%d/%Y %H:%M:%S',event_time) as event_timef, fact, comments from rec order by event_time desc",function(err,rows) {
 		//console.log(rows)
-		closeDb(db);
+		closeDb(db);		
 		res.send(rows);
 	})
 	

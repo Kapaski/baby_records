@@ -5,6 +5,14 @@ var currentTime = function() {
 			+now.getMinutes()+":"+now.getSeconds();
 }
 
+//for IE/Safari
+var currentTime1 = function() {
+	var now = new Date();
+	return (now.getMonth()+1)
+			+"/"+now.getDate()+"/"+now.getFullYear()+" "+now.getHours()+":"
+			+now.getMinutes()+":"+now.getSeconds();
+}
+
 var resetPage = function() {
 	$("#new-event-type").hide("slow")	
 	$("#event").show(1000)
@@ -147,10 +155,10 @@ $(".event-remove-one").on('click',function() {
 })
 
 $('.report').on('click',function() {
-	var myurl = "http://192.168.1.15:8887/rows"
+	var report_url = "http://192.168.1.15:8887/rows"
 	$.ajax({
 		type: 'GET',		     
-        url: myurl,						
+        url: report_url,						
         success: function(data) {            
             var total_events = data.length
             var poo_total=pee_total=feed_total=lefty_total=
@@ -161,27 +169,28 @@ $('.report').on('click',function() {
             var min_poo_time,min_pee_time,min_feed_time;
             var max_poo_time, max_pee_time, max_feed_time;
 
-            data.forEach(function(d){
+            data.forEach(function(d){ 
+            	
             	if(d.type==='Bio') {
             		if(d.fact==='Pee') {
             			pee_total++;
-            			if(!min_pee_time) min_pee_time = d.event_time
-            			if(Date.parse(min_pee_time) > Date.parse(d.event_time)) {
-            				min_pee_time = d.event_time
+            			if(!min_pee_time) min_pee_time = d.event_timef
+            			if(Date.parse(min_pee_time) > Date.parse(d.event_timef)) {
+            				min_pee_time = d.event_timef
             			}
-            			if(!max_pee_time) max_pee_time = d.event_time
-            			if(Date.parse(max_pee_time) < Date.parse(d.event_time)) {
-            				max_pee_time = d.event_time
+            			if(!max_pee_time) max_pee_time = d.event_timef
+            			if(Date.parse(max_pee_time) < Date.parse(d.event_timef)) {
+            				max_pee_time = d.event_timef
             			}
             		}else if(d.fact==='Poo'){
             			poo_total++;
-            			if(!min_poo_time) min_poo_time = d.event_time
-            			if(Date.parse(min_poo_time) > Date.parse(d.event_time)) {
-            				min_poo_time = d.event_time
+            			if(!min_poo_time) min_poo_time = d.event_timef
+            			if(Date.parse(min_poo_time) > Date.parse(d.event_timef)) {
+            				min_poo_time = d.event_timef
             			}
-            			if(!max_poo_time) max_poo_time = d.event_time
-            			if(Date.parse(max_poo_time) < Date.parse(d.event_time)) {
-            				max_poo_time = d.event_time
+            			if(!max_poo_time) max_poo_time = d.event_timef
+            			if(Date.parse(max_poo_time) < Date.parse(d.event_timef)) {
+            				max_poo_time = d.event_timef
             			}
             		}
             	}else if(d.type==='Feed') {
@@ -194,19 +203,20 @@ $('.report').on('click',function() {
             			righty_total++;
             		}
             		feed_total++;
-            		if(!min_feed_time) min_feed_time = d.event_time
-            		if(Date.parse(min_feed_time) > Date.parse(d.event_time)) {
-            				min_feed_time = d.event_time
+            		if(!min_feed_time) min_feed_time = d.event_timef
+            		if(Date.parse(min_feed_time) > Date.parse(d.event_timef)) {
+            				min_feed_time = d.event_timef
             		}
-            		if(!max_feed_time) max_feed_time = d.event_time
-            		if(Date.parse(max_feed_time) < Date.parse(d.event_time)) {
-            				max_feed_time = d.event_time
+            		if(!max_feed_time) max_feed_time = d.event_timef
+            		if(Date.parse(max_feed_time) < Date.parse(d.event_timef)) {
+            				max_feed_time = d.event_timef
             		}
             	}
             })
-            //console.log(min_poo_time,min_pee_time,min_feed_time)
-            //console.log(max_poo_time,max_pee_time,max_feed_time)
-            var millisNow = Date.parse(currentTime())
+            console.log(min_poo_time,min_pee_time,min_feed_time)
+            console.log(max_poo_time,max_pee_time,max_feed_time)
+            console.log(min_poo_time, Date.parse(min_poo_time))
+            var millisNow = Date.parse(currentTime1())
 
             pee_avg = Math.ceil((millisNow - Date.parse(min_pee_time))/(pee_total*1000*60))
             poo_avg = Math.ceil((millisNow - Date.parse(min_poo_time))/(poo_total*1000*60))
