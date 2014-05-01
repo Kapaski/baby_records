@@ -3,8 +3,6 @@ baby_records
 
 a CRUD nodejs app for fun (recording my girl's daily activities)
 
-![my girl](https://github.com/Kapaski/baby_records/blob/master/public/favicon.ico)
-
 ##What's in here:
 
 * Check package.json for involved npm packages 
